@@ -1,14 +1,14 @@
 {
-  "name": "angular2-seed-advanced",
+  "name": "angular2-seed-advanced-spikes2",
   "main": "app.js",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "nativescript": {
-    "id": "com.yourdomain.appname",
+    "id": "com.mutuatech.Angular2SeedAdvancedSpikes2",
     "tns-ios": {
-      "version": "2.2.1"
+      "version": "2.3.0"
     },
     "tns-android": {
-      "version": "2.2.0"
+      "version": "2.3.0"
     }
   },
   "scripts": {
