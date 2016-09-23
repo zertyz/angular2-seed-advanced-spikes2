@@ -4,6 +4,9 @@ import { APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
+// ng2-bootstrap
+import * as Ng2BootstrapComponents from 'ng2-bootstrap';
+
 // app
 import { AppComponent } from './app/components/app.component';
 import { HomeComponent } from './app/components/home/home.component';
@@ -53,6 +56,8 @@ if (String('<%= TARGET_DESKTOP %>') === 'true') {
     AppComponent,
     HomeComponent,
     AboutComponent,
+
+    Ng2BootstrapComponents.ButtonRadioDirective,
 
     GvHomeComponent,
   ],
