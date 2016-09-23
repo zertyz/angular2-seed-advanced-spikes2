@@ -150,6 +150,8 @@
     "yargs": "^4.8.0"
   },
   "dependencies": {
+    "bootstrap": "^4.0.0-alpha.4",
+    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.6",
     "@angular/common": "2.0.0",
     "@angular/compiler": "2.0.0",
     "@angular/core": "2.0.0",
