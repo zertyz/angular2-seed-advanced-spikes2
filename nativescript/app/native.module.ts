@@ -19,6 +19,8 @@ import { AboutComponent } from './app/components/about/about.component';
 import { HomeComponent } from './app/components/home/home.component';
 import { routes } from './app/components/app.routes';
 
+import { GvHomeComponent }         from './app/components/pages/gv-home/gv-home.component';
+
 // feature modules
 import { CoreModule } from './app/frameworks/core/core.module';
 import { AnalyticsModule } from './app/frameworks/analytics/analytics.module';
@@ -43,7 +45,9 @@ import { NS_ANALYTICS_PROVIDERS } from './shared/nativescript/index';
   ],
   declarations: [
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+
+    GvHomeComponent,
   ],
   exports: [
     NativeScriptModule,
