@@ -10,6 +10,8 @@ import { HomeComponent } from './app/components/home/home.component';
 import { AboutComponent } from './app/components/about/about.component';
 import { routes } from './app/components/app.routes';
 
+import { GvHomeComponent }         from './app/components/pages/gv-home/gv-home.component';
+
 // feature modules
 import { CoreModule } from './app/frameworks/core/core.module';
 import { AnalyticsModule } from './app/frameworks/analytics/analytics.module';
@@ -50,7 +52,9 @@ if (String('<%= TARGET_DESKTOP %>') === 'true') {
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+
+    GvHomeComponent,
   ],
   providers: [
     {
