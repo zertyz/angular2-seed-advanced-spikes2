@@ -33,14 +33,11 @@ export class ProjectConfig extends SeedAdvancedConfig {
     /* Add to or override NPM module configurations: */
     // this.mergeObject(this.PLUGIN_CONFIGS['browser-sync'], { ghostMode: false });
 
-    // bootstrap
-    this.SYSTEM_CONFIG_DEV.paths['@ng-bootstrap/ng-bootstrap'] =
-      `${this.APP_BASE}node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap`;
-
-    this.SYSTEM_BUILDER_CONFIG.packages['@ng-bootstrap/ng-bootstrap'] = {
-      main: 'ng-bootstrap.js',
-      defaultExtension : 'js'
-    }
+    // ng-bootstrap references for web dev and production builds -- don't forget to include references in tools/tasks/project/desktop.libs.ts as well
+    this.SYSTEM_BUILDER_CONFIG.packages['@ng-bootstrap/ng-bootstrap'] = {main: 'ng-bootstrap.js', defaultExtension : 'js'};
+    this.SYSTEM_BUILDER_CONFIG.paths   ['@ng-bootstrap/ng-bootstrap'] = `${this.APP_BASE}node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js`;
+    this.SYSTEM_CONFIG_DEV    .paths   ['@ng-bootstrap/ng-bootstrap'] = `${this.APP_BASE}node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap`;
+    this.SYSTEM_CONFIG        .paths   ['@ng-bootstrap/ng-bootstrap'] = `${this.APP_BASE}node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js`;
 
   }
 
