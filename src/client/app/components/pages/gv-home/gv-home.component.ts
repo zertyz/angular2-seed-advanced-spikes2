@@ -37,7 +37,7 @@ export class GvHomeComponent {
       type: 'danger',
       message: 'This is a danger alert',
     });
-    this.backup = this.alerts.map((alert: IAlert) => Object.assign({}, alert));
+    this.backup = this.alerts.map((alert: IAlert) => alert);
   }
 
   public closeAlert(alert: IAlert) {
@@ -46,7 +46,7 @@ export class GvHomeComponent {
   }
 
   public reset() {
-    this.alerts = this.backup.map((alert: IAlert) => Object.assign({}, alert));
+    this.alerts = this.backup.map((alert: IAlert) => alert);
   }
 
   public gotoStart() {
