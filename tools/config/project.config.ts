@@ -19,6 +19,7 @@ export class ProjectConfig extends SeedAdvancedConfig {
     // Add `NPM` third-party libraries to be injected/bundled.
     this.NPM_DEPENDENCIES = [
       ...this.NPM_DEPENDENCIES,
+      {src: 'bootstrap/dist/css/bootstrap.css'/*bootstrap.min.css ? maybe not because they will get minified when build for production*/, inject: true},
       // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
     ];
 
@@ -31,6 +32,16 @@ export class ProjectConfig extends SeedAdvancedConfig {
 
     /* Add to or override NPM module configurations: */
     // this.mergeObject(this.PLUGIN_CONFIGS['browser-sync'], { ghostMode: false });
+
+    // bootstrap
+    this.SYSTEM_CONFIG_DEV.paths['@ng-bootstrap/ng-bootstrap'] =
+      `${this.APP_BASE}node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap`;
+
+    this.SYSTEM_BUILDER_CONFIG.packages['@ng-bootstrap/ng-bootstrap'] = {
+      main: 'ng-bootstrap.js',
+      defaultExtension : 'js'
+    }
+
   }
 
 }
