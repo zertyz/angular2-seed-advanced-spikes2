@@ -1,0 +1,5 @@
+Generate the PNGs with:
+gs -dNOPAUSE -sDEVICE=pngalpha -sOutputFile=KillerShoppingApps_pt_%d.png -r128  *.pdf -c quit
+
+Generate the Texts with:
+for p in {1..12}; do pdftotext *.pdf -eol unix -enc UTF-8 -f $p -l $p txt.txt; echo -en "## Slide $p: "; cat txt.txt | while read l; do echo -en "$l "; done; echo; done; rm txt.txt
