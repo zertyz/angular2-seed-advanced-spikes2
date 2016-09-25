@@ -6,13 +6,13 @@
   {{'GV_HOME_INFO' | translate}}
 </p>
 
+<!-- ng-bootstrap -->
 <p *ngFor="let alert of alerts">
   <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">{{ alert.message }}</ngb-alert>
 </p>
 <p>
   <button type="button" class="btn btn-primary" (click)="reset()">Reset</button>
 </p>
-
 <ngb-carousel>
   <template ngbSlide><img src="./assets/pages/gv-home/KillerShoppingApps_pt_1.png"  alt="KillerShoppingApps.com  Mobile Apps ||  that enhance the in-store Shopping experience ||  September, 2016 Contents: * Introdução * Funcionalidades * Localização dos Visitantes * Publicidade Contextual  * Papéis * Operação * Modelo Comercial"><div class="carousel-caption"></div></template>
   <template ngbSlide><img src="./assets/pages/gv-home/KillerShoppingApps_pt_2.png"  alt="Introdução  KillerShoppingApps.com é um serviço inovador, elaborado para prover as tecnologias necessárias para: ➔  Dar às lojas: ✔  ✔  ➔  Veículo de mídia capaz de aumentar vendas na loja física através de promoções com publicidade contextual – interesses & localização física dos visitantes Ponto de contato com os visitantes, com conteúdos textuais, audio-visuais e interativos via notificações para fomentar compras por impulso na loja física e online  Dar aos Shoppings ✔  September, 2016  Fonte de receita ao viabilizar este veículo de mídia, ponto de contato e informações quantitativas & qualitativas sobre o perfil dos visitantes de cada loja"><div class="carousel-caption"></div></template>
@@ -27,6 +27,101 @@
   <template ngbSlide><img src="./assets/pages/gv-home/KillerShoppingApps_pt_11.png" alt="Modelo Comercial  Setup ●  Por shopping (endereço)  ●  Por loja que deseja ter seu catálogo de produtos no app  Manutenção mensal ●  Shopping ●  ●  Proporcional ao número de lojas, ítens de interesse, integrações, etc.  Lojas ●  Disponibilização de produtos  ●  Campanhas  Divisão de receitas"><div class="carousel-caption"></div></template>
   <template ngbSlide><img src="./assets/pages/gv-home/KillerShoppingApps_pt_12.png" alt="Thank you KillerShoppingApps.com Key benefits: * Media Vehicle * Contextual Advertising * Location Based Services * Branded Mobile Application  * Drive Sales * Efficient ROI * Interest Lists  Luiz Silveira  Cláudio Maurício  luiz@  claudio.rocha@"><div class="carousel-caption"></div></template>
 </ngb-carousel>
+
+<!-- ng2-charts -->
+
+<h3>Line Chart</h3>
+<div class="row">
+  <div class="col-md-6">
+    <base-chart class="chart"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                (chartHover)="LineChartHovered($event)"
+                (chartClick)="LineChartClicked($event)"></base-chart>
+  </div>
+  <div class="col-md-6" style="margin-bottom: 10px;">
+    <table class="table table-responsive table-condensed">
+      <tr>
+        <th *ngFor="let label of lineChartLabels"></th>
+      </tr>
+      <tr *ngFor="let d of lineChartData">
+        <td *ngFor="let label of lineChartLabels; let j=index"></td>
+      </tr>
+    </table>
+    <button (click)="randomizeLineChart()">CLICK</button>
+  </div>
+</div>
+
+<h3>Bar Chart</h3>
+<base-chart class="chart"
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            (chartHover)="BarChartHovered($event)"
+            (chartClick)="BarChartClicked($event)"></base-chart>
+<button (click)="randomizeBarChart()">Update</button>
+
+<h3>Doughnut Chart</h3>
+<base-chart class="chart"
+            [data]="doughnutChartData"
+            [labels]="doughnutChartLabels"
+            [chartType]="doughnutChartType"
+            (chartHover)="DoughnutChartHovered($event)"
+            (chartClick)="DoughnutChartClicked($event)"></base-chart>
+
+<h3>Radar Chart</h3>
+<base-chart class="chart"
+            [datasets]="radarChartData"
+            [labels]="radarChartLabels"
+            [chartType]="radarChartType"
+            (chartHover)="RadarChartHovered($event)"
+            (chartClick)="RadarChartClicked($event)"></base-chart>
+
+<h3>Pie Chart</h3>
+<base-chart class="chart"
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            (chartHover)="PieChartHovered($event)"
+            (chartClick)="PieChartClicked($event)"></base-chart>
+
+<h3>Polar Area Chart</h3>
+<base-chart class="chart"
+            [data]="polarAreaChartData"
+            [labels]="polarAreaChartLabels"
+            [legend]="polarAreaLegend"
+            [chartType]="polarAreaChartType"
+            (chartHover)="polarAreaChartHovered($event)"
+            (chartClick)="polarAreaChartClicked($event)"></base-chart>
+
+<h3>Dynamic Chart</h3>
+<div class="col-md-6">
+  <base-chart class="chart"
+              [data]="dynamicLineChartData"
+              [labels]="dynamicLineChartLabels"
+              [options]="dynamicLineChartOptions"
+              [chartType]="dynamicLineChartType"
+              (chartHover)="dynamicChartHovered($event)"
+              (chartClick)="dynamicChartClicked($event)"></base-chart>
+</div>
+<div class="col-md-6">
+  <base-chart class="chart"
+              [data]="dynamicPieChartData"
+              [labels]="dynamicPieChartLabels"
+              [chartType]="dynamicPieChartType"
+              (chartHover)="dynamicChartHovered($event)"
+              (chartClick)="dynamicChartClicked($event)"></base-chart>
+</div>
+<div class="col-md-12 text-center" style="margin-top: 10px;">
+  <button (click)="randomizeDynamicChartType()" style="display: inline-block">Toggle</button>
+</div>
+
 
 <p>
   <a class="link" (click)="gotoStart()">{{'GV_HOME_START' | translate}}</a>
