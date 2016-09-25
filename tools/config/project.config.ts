@@ -20,6 +20,7 @@ export class ProjectConfig extends SeedAdvancedConfig {
     this.NPM_DEPENDENCIES = [
       ...this.NPM_DEPENDENCIES,
       {src: 'bootstrap/dist/css/bootstrap.css'/*bootstrap.min.css ? maybe not because they will get minified when build for production*/, inject: true},
+      {src: 'chart.js/dist/Chart.bundle.js', inject: 'libs'},   // bundle includes moment.js -- if used elsewhere, moment.js should be included separately
       // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
     ];
 
@@ -38,6 +39,12 @@ export class ProjectConfig extends SeedAdvancedConfig {
     this.SYSTEM_BUILDER_CONFIG.paths   ['@ng-bootstrap/ng-bootstrap'] = `${this.APP_BASE}node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js`;
     this.SYSTEM_CONFIG_DEV    .paths   ['@ng-bootstrap/ng-bootstrap'] = `${this.APP_BASE}node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap`;
     this.SYSTEM_CONFIG        .paths   ['@ng-bootstrap/ng-bootstrap'] = `${this.APP_BASE}node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js`;
+
+    // ng2-charts + chart.js (according to http://www.chartjs.org/docs/#getting-started)
+    this.SYSTEM_BUILDER_CONFIG.packages['ng2-charts'] = {main: 'ng2-charts.js', defaultExtension : 'js'};
+    this.SYSTEM_BUILDER_CONFIG.paths   ['ng2-charts'] = `${this.APP_BASE}node_modules/ng2-charts/`;
+    this.SYSTEM_CONFIG_DEV    .paths   ['ng2-charts'] = `${this.APP_BASE}node_modules/ng2-charts/`;
+    this.SYSTEM_CONFIG        .paths   ['ng2-charts'] = `${this.APP_BASE}node_modules/ng2-charts/`;
 
   }
 

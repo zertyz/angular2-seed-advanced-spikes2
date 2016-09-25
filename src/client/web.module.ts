@@ -7,6 +7,9 @@ import { RouterModule } from '@angular/router';
 // bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+// ng2-charts
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+
 // app
 import { AppComponent } from './app/components/app.component';
 import { HomeComponent } from './app/components/home/home.component';
@@ -43,6 +46,7 @@ if (String('<%= TARGET_DESKTOP %>') === 'true') {
 @NgModule({
   imports: [
     NgbModule,
+    ChartsModule,
     BrowserModule,
     CoreModule.forRoot([
       { provide: WindowService, useValue: window },
