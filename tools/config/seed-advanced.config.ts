@@ -1,5 +1,5 @@
-import {argv} from 'yargs';
-import {SeedConfig} from './seed.config';
+import { argv } from 'yargs';
+import { SeedConfig } from './seed.config';
 
 export class SeedAdvancedConfig extends SeedConfig {
 
@@ -18,23 +18,27 @@ export class SeedAdvancedConfig extends SeedConfig {
       }
     }
     let bootstrap = 'main.web';
-    if (this.ENABLE_HOT_LOADING) {
-      bootstrap   = 'hot_loader_main';
-    } else if (this.TARGET_MOBILE_HYBRID) {
-      bootstrap   = 'main.mobile.hybrid'; // Cordova
+    if (this.TARGET_MOBILE_HYBRID) {
+      // Perhaps Ionic or Cordova
+      // This is not implemented in the seed but here to show you way forward if you wanted to add
+      bootstrap   = 'main.mobile.hybrid';
     }
 
     // Override seed defaults
     this.BOOTSTRAP_DIR = argv['app'] ? (argv['app'] + '/') : '';
-    this.BOOTSTRAP_MODULE = `${this.BOOTSTRAP_DIR}` + (this.ENABLE_HOT_LOADING ? 'hot_loader_main' : bootstrap);
+    this.BOOTSTRAP_MODULE = `${this.BOOTSTRAP_DIR}${bootstrap}`;
     this.NG_FACTORY_FILE = `${bootstrap}.prod`;
     this.BOOTSTRAP_PROD_MODULE = `${this.BOOTSTRAP_DIR}${bootstrap}`;
     this.BOOTSTRAP_FACTORY_PROD_MODULE = `${this.BOOTSTRAP_DIR}${bootstrap}.prod`;
 
-    this.APP_TITLE = 'Angular 2 Seed Advanced';
+    this.APP_TITLE = 'Angular Seed Advanced';
     this.APP_BASE = ''; // paths must remain relative
 
     /** Development **/
+
+    this.NPM_DEPENDENCIES = [
+      ...this.NPM_DEPENDENCIES
+    ];
 
     // Fix up package configuration for libs and @ngrx
     this.SYSTEM_CONFIG['packageConfigPaths'] = [
@@ -51,12 +55,29 @@ export class SeedAdvancedConfig extends SeedConfig {
       main: 'bundles/store.umd.js',
       defaultExtension: 'js'
     };
+    this.SYSTEM_CONFIG['packages']['@ngrx/effects'] = {
+      main: 'bundles/effects.umd.js',
+      defaultExtension: 'js'
+    };
+    this.SYSTEM_CONFIG['packages']['ng2-translate'] = {
+      main: 'bundles/index.js',
+      defaultExtension: 'js'
+    };
+    this.SYSTEM_CONFIG['packages']['angulartics2'] = {
+      main: 'dist/index.js',
+      defaultExtension: 'js'
+    };
+    this.SYSTEM_CONFIG['packages']['angulartics2/dist/providers'] = {
+      main: 'index.js',
+      defaultExtension: 'js'
+    };
 
     // Fix up paths for libs
     this.SYSTEM_CONFIG.paths[this.BOOTSTRAP_MODULE] = `${this.APP_BASE}${this.BOOTSTRAP_MODULE}`;
-    this.SYSTEM_CONFIG.paths['angulartics2'] = `${this.APP_BASE}node_modules/angulartics2/index`;
-    this.SYSTEM_CONFIG.paths['angulartics2/*'] = `${this.APP_BASE}node_modules/angulartics2/*`;
     this.SYSTEM_CONFIG.paths['lodash'] = `${this.APP_BASE}node_modules/lodash/index`;
+
+    // testing support for @ngrx/effects
+    this.SYSTEM_CONFIG.paths['@ngrx/effects/testing'] = `node_modules/@ngrx/effects/testing/index`;
 
     /** Production **/
 
@@ -69,9 +90,26 @@ export class SeedAdvancedConfig extends SeedConfig {
       main: 'index.js',
       defaultExtension: 'js'
     };
-    this.SYSTEM_BUILDER_CONFIG.paths['angulartics2'] = `node_modules/angulartics2/index.js`;
+    this.SYSTEM_BUILDER_CONFIG['packages']['@ngrx/effects'] = {
+      main: 'index.js',
+      defaultExtension: 'js'
+    };
+    this.SYSTEM_BUILDER_CONFIG['packages']['ng2-translate'] = {
+      main: 'bundles/index.js',
+      defaultExtension: 'js'
+    };
+    this.SYSTEM_BUILDER_CONFIG['packages']['angulartics2'] = {
+      main: 'dist/index.js',
+      defaultExtension: 'js'
+    };
+    this.SYSTEM_BUILDER_CONFIG['packages']['angulartics2/dist/providers'] = {
+      main: 'index.js',
+      defaultExtension: 'js'
+    };
+
     this.SYSTEM_BUILDER_CONFIG.paths['lodash'] = `node_modules/lodash/index.js`;
     this.SYSTEM_BUILDER_CONFIG.paths['@ngrx/core'] = `node_modules/@ngrx/core/index.js`;
     this.SYSTEM_BUILDER_CONFIG.paths['@ngrx/store'] = `node_modules/@ngrx/store/index.js`;
+    this.SYSTEM_BUILDER_CONFIG.paths['@ngrx/effects'] = `node_modules/@ngrx/effects/index.js`;
   }
 }

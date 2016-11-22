@@ -1,11 +1,13 @@
 // nativescript
-import { NativeScriptModule, platformNativeScriptDynamic, onAfterLivesync, onBeforeLivesync } from 'nativescript-angular/platform';
+import { NativeScriptModule, platformNativeScriptDynamic } from 'nativescript-angular/platform';
 
 /**
  * Config
  * Seed provided configuration options
  */
 import { Config } from './app/frameworks/core/index';
+import { Page } from 'ui/page';
+Config.PageClass = Page;
 
 // (required) platform target (allows component decorators to use the right view template)
 Config.PLATFORM_TARGET = Config.PLATFORMS.MOBILE_NATIVE;

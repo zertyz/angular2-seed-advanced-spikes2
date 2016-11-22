@@ -2,6 +2,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 // libs
@@ -10,13 +11,13 @@ import { StoreModule } from '@ngrx/store';
 // app
 import { ToolbarComponent } from './components/toolbar.component';
 import { NavbarComponent } from './components/navbar.component';
-import { nameListReducer, NameListService } from './services/name-list.service';
+import { NameListService } from './services/name-list.service';
 import { MultilingualModule } from '../i18n/multilingual.module';
-import { multilingualReducer, MultilingualStateI } from '../i18n/services/multilingual.service';
+import { IMultilingualState } from '../i18n/services/multilingual.service';
 
 // state
 export interface AppStoreI {
-  i18n: MultilingualStateI;
+  i18n: IMultilingualState;
   names: Array<string>;
 };
 
@@ -28,12 +29,10 @@ export interface AppStoreI {
   imports: [
     CommonModule,
     FormsModule,
+    HttpModule,
     RouterModule,
     MultilingualModule,
-    StoreModule.provideStore({
-      i18n: multilingualReducer,
-      names: nameListReducer
-    })
+    StoreModule
   ],
   declarations: [
     ToolbarComponent,
@@ -44,7 +43,8 @@ export interface AppStoreI {
   ],
   exports: [
     ToolbarComponent,
-    NavbarComponent
+    NavbarComponent,
+    MultilingualModule
   ]
 })
 export class SampleModule {
